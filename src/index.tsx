@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from "react-dom";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from "react-redux";
-// import "./styles/index.min.css";
 
 import {Store} from "./config/store";
 import {Offer} from "./features/offers/Offer";
