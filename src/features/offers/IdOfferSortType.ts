@@ -1,6 +1,6 @@
-export const enum IdSortType {
-    byDefault = "default",
-    byName = "name",
-    byPopularity = "popularity",
-    byPrice = "price"
+export const enum IdOfferSortType {
+    Default = "default",
+    Name = "name",
+    Popularity = "popularity",
+    Price = "price"
 }
