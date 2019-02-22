@@ -11,13 +11,14 @@ import {Loading} from "../generic/Loading";
 import "./offer.css";
 import {OfferNav} from "./OfferNav";
 import {OfferTiles} from "./OfferTiles";
+import {Footer} from "../generic/Footer";
 
 
 interface IOfferDOMState {
     offersInfo?: IOfferState;
 };
 interface IOfferDOMDispatch {
-    onChangeSort: (sortBy: IdOfferSortType) => Action<any>;
+    onChangeSort: (sortBy: IdOfferSortType, offers: IOfferInfo[]) => Action<any>;
     onOfferReceive: (offers: IOfferInfo[]) => Action<any>;
 }
 interface IOfferDOMProps extends IOfferDOMState, IOfferDOMDispatch {}
@@ -37,10 +38,11 @@ class OfferDOM extends React.PureComponent<IOfferDOMProps> {
 
         return (
             <div className="container">
-                <OfferNav onSortClick={onChangeSort}/>
+                <OfferNav onSortClick={onChangeSort} offerState={offersInfo}/>
                 <div className="row grid-container">
                     {this.getOfferTiles()}
                 </div>
+                <Footer/>
             </div>
         )
     }
@@ -87,7 +89,7 @@ const mapState = (state: IState): IOfferDOMState => ({
     offersInfo: state.offer,
 });
 const mapDispatch = (dispatch: Dispatch): IOfferDOMDispatch => ({
-    onChangeSort: (sortBy: IdOfferSortType) => dispatch(actionOfferSortBy(sortBy)),
+    onChangeSort: (sortBy: IdOfferSortType, offers: IOfferInfo[]) => dispatch(actionOfferSortBy(sortBy, offers)),
     onOfferReceive: (offers: IOfferInfo[]) => dispatch(actionOfferReceive(offers))
 });
 

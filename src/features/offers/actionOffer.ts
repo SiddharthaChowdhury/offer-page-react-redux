@@ -16,9 +16,10 @@ export interface IActionOffer extends Action{
 export const actionOfferReceive = (offerInfo: IOfferInfo[]): IActionOffer => ({
     offerInfo,
     type: TypeActionOffer.Receive,
-})
+});
 
-export const actionOfferSortBy = (sortType: IdOfferSortType): IActionOffer => ({
+export const actionOfferSortBy = (sortType: IdOfferSortType, offerInfo: IOfferInfo[]): IActionOffer => ({
     sortType,
+    offerInfo,
     type: TypeActionOffer.Update,
-})
+});
