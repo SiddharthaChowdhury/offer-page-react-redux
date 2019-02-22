@@ -38,7 +38,7 @@ class OfferDOM extends React.PureComponent<IOfferDOMProps> {
 
         return (
             <div className="container">
-                <OfferNav onSortClick={onChangeSort} offerState={offersInfo}/>
+                <OfferNav onSortClick={this.handleOfferSort} currentlySortedAs={offersInfo!.sortType!}/>
                 <div className="row grid-container">
                     {this.getOfferTiles()}
                 </div>
@@ -49,6 +49,21 @@ class OfferDOM extends React.PureComponent<IOfferDOMProps> {
 
     public componentDidMount(): void {
         this.getOffers()
+    }
+
+    private handleOfferSort = (sortBy: IdOfferSortType) => {
+        const {onChangeSort, offersInfo} = this.props;
+        const {offers, sortType} = offersInfo!;
+
+        const sortedOffer: IOfferInfo[] = offers!.sort((a: any, b: any) => {
+            if (a.sortIndex[sortBy] < b.sortIndex[sortBy])
+                return -1;
+            if (a.sortIndex[sortBy] > b.sortIndex[sortBy])
+                return 1;
+            return 0;
+        });
+
+        onChangeSort(sortBy, sortedOffer)
     }
 
     private getOfferTiles = () => {
