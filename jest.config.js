@@ -2,10 +2,16 @@ module.exports = {
     "roots": [
         "<rootDir>/src"
     ],
+    "clearMocks": true,
     "transform": {
         "^.+\\.tsx?$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+
+    // The glob patterns Jest uses to detect test files
+    "testMatch": ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+    "testPathIgnorePatterns": ['\\\\node_modules\\\\'],
+    "transformIgnorePatterns": ['<rootDir>/node_modules/'],
+
     "moduleFileExtensions": [
         "ts",
         "tsx",
@@ -14,4 +20,11 @@ module.exports = {
         "json",
         "node"
     ],
-}
+    "coverageDirectory": 'coverage',
+    "collectCoverageFrom": ['src/**/*.{ts,tsx}'],
+
+    // Indicates whether each individual test should be reported during the run
+    "verbose": false,
+
+    "setupFiles": ['<rootDir>/enzyme.config.ts']
+};
