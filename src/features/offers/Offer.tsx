@@ -12,6 +12,7 @@ import "./offer.css";
 import {OfferNav} from "./OfferNav";
 import {OfferTiles} from "./OfferTiles";
 import {Footer} from "../generic/Footer";
+import {utilOffer} from "../../util/utilOffer";
 
 
 interface IOfferDOMState {
@@ -55,16 +56,9 @@ class OfferDOM extends React.PureComponent<IOfferDOMProps> {
         const {onChangeSort, offersInfo} = this.props;
         const {offers, sortType} = offersInfo!;
 
-        const sortedOffer: IOfferInfo[] = offers!.sort((a: any, b: any) => {
-            if (a.sortIndex[sortBy] < b.sortIndex[sortBy])
-                return -1;
-            if (a.sortIndex[sortBy] > b.sortIndex[sortBy])
-                return 1;
-            return 0;
-        });
-
+        const sortedOffer: IOfferInfo[] = utilOffer.sortOfferArrayByIndex(offers!, sortBy)
         onChangeSort(sortBy, sortedOffer)
-    }
+    };
 
     private getOfferTiles = () => {
         const {offersInfo} = this.props;

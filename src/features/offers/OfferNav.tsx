@@ -10,10 +10,10 @@ interface IOfferNavInfo {
 export const OfferNav: React.FC<IOfferNavInfo> = ({onSortClick, currentlySortedAs }) => {
     return (
         <div className="top-nav">
-            <label>Show by</label>
-            <div className="dropdown border-rad-5">
+            <label>Sort by</label>
+            <div className="dropdown">
                 <span>{currentlySortedAs.toUpperCase()}</span>
-                <div className="dropdown-content border-rad-5">
+                <div className="dropdown-content">
                     <div onClick={() => onSortClick(IdOfferSortType.Price)}>Price</div>
                     <div onClick={() => onSortClick(IdOfferSortType.Popularity)}>Popularity</div>
                     <div onClick={() => onSortClick(IdOfferSortType.Name)}>Name</div>
